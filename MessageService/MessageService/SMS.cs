@@ -10,7 +10,7 @@ using System.IO;
 
 namespace MessageService
 {
-    public class SMS : Message
+    public class SMS : Message//set up the SMS classes to setup the json file for sms system
     {
         private string ID;
         private string sender;
@@ -26,7 +26,7 @@ namespace MessageService
             {
                 this.ID = value;
             }
-        }
+        }//end _ID
 
         public string _Sender
         {
@@ -45,7 +45,7 @@ namespace MessageService
                     //throw new Exception("Please enter 9 digits");
                 }
             }
-        }
+        }//end _sender
 
         public string _Body
         {
@@ -60,7 +60,7 @@ namespace MessageService
                 {
                     throw new Exception("please enter message");
                 }
-                using (var reader = new StreamReader(@"D:\Uni\Software Engineering\CourseWork\Work\MessageService\textwords.csv"))
+                using (var reader = new StreamReader(@"F:\Uni\Software Engineering\CourseWork\Work\MessageService\textwords.csv"))//change if the source is different
                 {
                     List<string> listA = new List<string>();
                     List<string> listB = new List<string>();
@@ -90,10 +90,8 @@ namespace MessageService
                         }
                     }
                     this._Body = message;
-                }
-
-            }
-        }
-
-    }
-}
+                }//end using
+            }//end set
+        }//end _body method
+    }//end class
+}//end namespace

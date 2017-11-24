@@ -21,14 +21,14 @@ namespace MessageService
         public Form1()
         {
             InitializeComponent();
-            con.ConnectionString = "Provider=Microsoft.Jet.Oledb.4.0; Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\Messages.mdb; Persist Security Info=False;";
+            con.ConnectionString = "Provider=Microsoft.Jet.Oledb.4.0; Data Source=" + AppDomain.CurrentDomain.BaseDirectory + "\\Messages.mdb; Persist Security Info=False;";//connection to the access database
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-                con.Open();
+                con.Open();//command for connecting
                 MessageBox.Show("Connection Successful");
                 
             }
@@ -39,7 +39,7 @@ namespace MessageService
 
             OleDbCommand com = new OleDbCommand();
             com.Connection = con;
-            string query = "select * from tbRecords";
+            string query = "select * from tbRecords";//select the whole table
             com.CommandText = query;
 
             OleDbDataReader reader = com.ExecuteReader();
@@ -57,14 +57,14 @@ namespace MessageService
             {
                 OleDbCommand com = new OleDbCommand();
                 com.Connection = con;
-                com.CommandText = "insert into tbRecords (Type, Subject, Contact, Message) values('" + txtID.Text + "','" + txtSubject.Text + "','" + txtContact.Text + "','" + txtMessage.Text + "')";
+                com.CommandText = "insert into tbRecords (Type, Subject, Contact, Message) values('" + txtID.Text + "','" + txtSubject.Text + "','" + txtContact.Text + "','" + txtMessage.Text + "')";//insert data in to the columns
 
                 com.ExecuteNonQuery();
                 MessageBox.Show("Message Saved");
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error" + ex);
+                MessageBox.Show("Error" + ex);//shows error message and what is wrong
             }
 
             //create a json file
@@ -105,7 +105,7 @@ namespace MessageService
             txtSubject.Clear();            
         }
 
-        //shows the id for each record in database
+        //shows the id for each record in database, when selected the rest of the values are displayed.
         private void cbDatabase_SelectedIndexChanged(object sender, EventArgs e)
         {
             OleDbCommand com = new OleDbCommand();
